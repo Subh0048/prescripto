@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContextProvider";
 import { assets } from "../assets/assets";
+import RelatedDoctors from "../components/RelatedDoctors";
 
 const AppointMent = () => {
   const { docId } = useParams();
@@ -90,6 +91,8 @@ const AppointMent = () => {
     console.log(docSlots)
   }, [docSlots])
 
+  console.log(docInfo)
+
   return (
     docInfo && (
       <div>
@@ -145,19 +148,7 @@ const AppointMent = () => {
                 <div onClick={() => setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'border border-gray-600'}`} key={index} >
                   <p>{item[0] && daysOfWeek[item[0]?.dateTime?.getDay()]}</p>
                   <p>{item[0] && item[0]?.dateTime?.getDate()}</p>
-
-
-
-
-
                 </div>
-
-
-
-
-
-
-
               ))
 
             }
@@ -175,20 +166,13 @@ const AppointMent = () => {
 
                   {item.time.toLowerCase()}
                 </p>)
-
-
-
-
               )
             }
           </div>
           <button className="bg-primary text-white rounded-full px-14 py-5 my-6 cursor-pointer">Book an AppointMent</button>
 
-
-
-
-
         </div>
+        <RelatedDoctors speciality={docInfo.speciality} docId={docInfo._id} />
 
 
       </div>
