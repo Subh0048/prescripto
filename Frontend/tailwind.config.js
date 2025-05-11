@@ -11,7 +11,10 @@ export default {
       },
       gridTemplateColumns:{
         'auto':'repeat(auto-fill, minmax(180px,1fr))'
-      }
+      },
+      borderRadius: {
+        '4xl': '2.5rem', // or whatever size you prefer
+      },
     },
   },
   plugins: [],
