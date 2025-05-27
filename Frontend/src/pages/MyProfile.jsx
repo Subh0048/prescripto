@@ -52,34 +52,6 @@ const MyProfile = () => {
         }
       </div>
     </div>
-
-
-
-
-
-
-
-    // <div className='flex flex-col gap-4' >
-    //   <div className="py-4 ">
-    //     <img className='max-w-[100px]' src={assets.profile_pic} alt="" loading='lazy' />
-    //   </div>
-    //   <div>
-    //     <p className='border-b border-b-gray-300 text-gray-900 text-2xl py-2'>Edward Vincent</p>
-    //     <p>CONTACT INFORMATION</p>
-    //     <p>Email id: subhamdev@gmail.com</p>
-    //     <p>Phone:8879448068</p>
-    //     <p>Address:Mumbai</p>
-    //     <p>BASIC INFORMATION</p>
-    //     <p>Gender:Male</p>
-    //     <p>Birthday:20 july 2003</p>
-    //   </div>
-    //   <div>
-    //     <button>Edit</button>
-    //     <button>save information</button>
-    //   </div>
-
-
-    // </div>
   )
 }
 
