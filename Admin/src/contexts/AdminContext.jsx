@@ -4,8 +4,9 @@ export const AdminContext = createContext()
 
 const AdminContextProvider = (props) => {
     const [aToken, setAtoken] = useState(" ")
+    const backendUrl = import.meta.VITE_BACKEND_URL
     const value = {
-        aToken, setAtoken
+        aToken, setAtoken, backendUrl
 
 
 
@@ -13,7 +14,7 @@ const AdminContextProvider = (props) => {
 
     return (
         <AdminContext.Provider value={value}>
-            {props.childern}
+            {props.children}
         </AdminContext.Provider>
     )
 }
