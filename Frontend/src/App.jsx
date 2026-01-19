@@ -10,7 +10,7 @@ import MyAppointments from './pages/MyAppointments'
 import AppointMent from './pages/AppointMent'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import {motion} from "framer-motion"
+
 
 const App = () => {
   return (
