@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
-import { Calendar, Plus, Trash2, Save } from "lucide-react";
+import { Calendar, Plus,Minus , Trash2, Save } from "lucide-react";
 
 export default function DoctorForm() {
   const {
@@ -32,7 +32,7 @@ export default function DoctorForm() {
         startTime: "",
         endTime: "",
       },
-      languages: [""],
+       languages: [{ name: "" }],
       emergencyContact: {
         name: "",
         relationship: "",
@@ -81,8 +81,8 @@ export default function DoctorForm() {
   ];
 
   return (
-    <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="max-w-4xl p-8 mx-auto bg-white shadow-xl rounded-2xl">
+    <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-blue-50 to-indigo-100 ">
+      <div className="max-w-4xl p-8 mx-auto bg-white shadow-xl rounded-2xl ">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-3 bg-indigo-600 rounded-lg">
             <Calendar className="w-8 h-8 text-white" />
@@ -154,10 +154,10 @@ export default function DoctorForm() {
                     required: "Email is required",
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
+                      message:"Invalid email address",
                     },
                   })}
-                  className="w-full py-2 border border-gray-300 rounded-lg p x-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg p x-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="john.doe@hospital.com"
                 />
                 {errors.personalInfo?.email && (
@@ -223,7 +223,7 @@ export default function DoctorForm() {
                   {...register("personalInfo.gender", {
                     required: "Gender is required",
                   })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
                 >
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
@@ -245,7 +245,7 @@ export default function DoctorForm() {
               Professional Information
             </h2>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div>
+              <div >
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Specialization *
                 </label>
@@ -253,7 +253,7 @@ export default function DoctorForm() {
                   {...register("professionalInfo.specialization", {
                     required: "Specialization is required",
                   })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
                 >
                   <option value="">Select Specialization</option>
                   {specializations.map((spec) => (
@@ -371,17 +371,29 @@ export default function DoctorForm() {
             {fields.map((field, index) => (
               <div key={field.id} className="flex gap-2 mb-3">
                 <input
-                  className="w-4 w-full h-4 border border-gray-300 rounded outline-none focus:ring-indigo-500"
+                  className=" w-1/2 h-10 border border-gray-300 rounded outline-none focus:ring-indigo-500"
                   type="text"
-                  {...register(`language${index}`)}
+                  {...register(`language${index}.name`)}
                 />
+
+                <button
+              type="button"
+              onClick={() => remove({name:""})}
+              className="flex items-center gap-2 px-4 py-2 text-white transition bg-indigo-500 rounded-lg hover:bg-primary"
+            >
+              <Minus className="w-4 h-4" />
+              remove Language
+            </button>
+
               </div>
+
+              
             ))}
 
             <button
               type="button"
-              onClick={() => append("")}
-              className="flex items-center gap-2 px-4 py-2 text-white transition bg-indigo-600 rounded-lg hover:bg-indigo-700"
+              onClick={() => append({name:""})}
+              className="flex items-center gap-2 px-4 py-2 text-white transition bg-primary rounded-lg hover:bg-primary"
             >
               <Plus className="w-4 h-4" />
               Add Language
@@ -397,7 +409,7 @@ export default function DoctorForm() {
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Working Days *
               </label>
-              <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+              <div className="grid grid-cols-2 gap-2 md:grid-cols-7">
                 {daysOfWeek.map((day) => (
                   <label
                     key={day}
@@ -537,7 +549,7 @@ export default function DoctorForm() {
 
           {/* Bio */}
           <section className="pb-6 border-b">
-            <h2 className="mb-4 text-xl font-semibold text-gray-800">
+            <h2 className="mb-4 text-xl font-semibold text-gray-800 ">
               Biography
             </h2>
             <textarea
@@ -547,7 +559,7 @@ export default function DoctorForm() {
                 maxLength: { value: 500, message: "Maximum 500 characters" },
               })}
               rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
               placeholder="Write a brief biography about the doctor..."
             />
             {errors.bio && (

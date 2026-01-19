@@ -10,7 +10,7 @@ function Adddoctor() {
       <p className="p-5 text-xl font-semibold text-gray-800 ">Add Doctor</p>
       <div className="mx-5 bg-white border border-gray-300 rounded max-h-fit">
         <div className="p-5">
-          <div className="flex items-center block gap-5">
+          <div className="flex items-center gap-5 mb-5">
             <label className="flex items-center justify-center w-20 h-20 text-gray-500 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300">
               <SquareUserRound size={25} />
               <input type="file" className="hidden" />
@@ -24,6 +24,7 @@ function Adddoctor() {
           <div>
             <DoctorForm />
           </div>
+
         </div>
       </div>
     </div>

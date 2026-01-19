@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
 
 
-
 const connectDB = async ()=>{
-
     mongoose.connection.on('connected',()=>{console.log("database connected successfully")})
-    await mongoose.connect(`${process.env.MONGODB_URI}/prescripto`)
+    await mongoose.connect(process.env.MONGO_URI)
 }
 export default connectDB

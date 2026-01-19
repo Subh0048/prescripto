@@ -85,9 +85,14 @@ const addDoctor = async (req, res) => {
 };
 
 const loginAdmin = async (req, res) => {
+  
   try {
     const { email, password } = req.body;
-    console.log(process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD);
+
+    console.log(123,email, password);
+    console.log(124,process.env.ADMIN_EMAIL,process.env.ADMIN_PASSWORD)
+    console.log(125, email == process.env.ADMIN_EMAIL)
+    console.log(126,password == process.env.ADMIN_PASSWORD)
 
     if (
       email == process.env.ADMIN_EMAIL &&
@@ -96,6 +101,8 @@ const loginAdmin = async (req, res) => {
       const token = jwt.sign({ email }, process.env.JWT_SECRET, {
         expiresIn: "7d",
       });
+      console.log("come")
+
 
       return res.json({ success: true, token });
     } else {

@@ -20,3 +20,7 @@
     @apply text-white bg-primary;
   }
 }
+
+input:focus {
+  @apply outline-none;
+}
