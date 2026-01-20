@@ -18,7 +18,7 @@ function Sidebar() {
           <p
             className="hidden md:block"
             onClick={() => {
-              navigate("/");
+              navigate("/dashboard");
             }}
           >
             Dashboard

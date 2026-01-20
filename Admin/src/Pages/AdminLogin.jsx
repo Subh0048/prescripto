@@ -1,29 +1,38 @@
-import React, { useState } from 'react'
+import{ useState } from 'react'
 import axios from "axios"
+import {useNavigate} from "react-router-dom"
+
 
 const AdminLogin = () => {
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-
+  const[error, setError]=useState('')
+  const navigate = useNavigate()
+ 
 
 const submitHandler = async (e) => {
   e.preventDefault()
-
   try {
     const res = await axios.post(
-      "http://localhost:4000/api/admin/login",
+      `${import.meta.env.VITE_BASE_API}/api/admin/login`,
       { email, password }
     )
 
-    console.log(1, res.data) 
+    if(res?.data?.message){
+      setError(res?.data?.message)
+    }
+    if(res?.data?.token){
+      localStorage.setItem("admintoken",res?.data?.token)
+    }
+    if(localStorage.getItem("admintoken")){
+      navigate ("/dashboard")
+
+    }
   } catch (error) {
-    console.error(error.response?.data || error.message)
+    console.error(error)
   }
 }
 
-  
   return (
     <form className='min-h-[80vh] flex items-center' >
       <div className='flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 text-sm shadow-lg'>
@@ -38,8 +47,7 @@ const submitHandler = async (e) => {
           <input className='border border-zinc-900 rounded w-full p-2 mt-1 focus:border-primary focus:outline-none' type="password" placeholder='password' value={password} onChange={(e) => (setPassword(e.target.value))} />
         </div>
         <button className='bg-primary text-white w-full py-2 rounded-md text-base' onClick={(e)=>submitHandler(e)}>Login</button>
-          
-        
+        {<span className='text-red-500'>{error}</span>}
       </div>
     </form>
   )
