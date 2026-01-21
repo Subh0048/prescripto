@@ -6,6 +6,7 @@ import Allapointments from "./Pages/Allapointments";
 import Adddoctor from "./Pages/Adddoctor";
 import Alldoctor from "./Pages/Alldoctor";
 import AdminLogin from "./Pages/AdminLogin";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 
 function App() {
@@ -13,11 +14,13 @@ function App() {
   return (
      <Routes>
       <Route path="/" element={<AdminLogin />} />
-      <Route element={<AdminLayout />}>
+      <Route element={<ProtectedRoute/> }>
+      <Route element={<AdminLayout/>}>
         <Route path="/appointments" element={<Allapointments />} />
         <Route path="/adddoctor" element={<Adddoctor />} />
         <Route path="/doctorlist" element={<Alldoctor />} />
         <Route path="/dashboard" element={<Dashboard />} />
+      </Route> 
       </Route>
     </Routes>
   );
